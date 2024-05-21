@@ -4,7 +4,8 @@ final dummyMeals = [
   Meal(
     title: "Poulet rôti au four",
     categories: ['ctgr_2', 'ctgr_8'],
-    imageUrl: "https://example.com/image.jpg",
+    imageUrl:
+        "https://m1.zeste.ca/serdy-m-dia-inc/image/upload/f_auto/fl_lossy/q_auto:eco/x_0,y_300,w_5760,h_3240,c_crop/w_1200,h_630,c_fill/v1705071547/foodlavie/prod/recettes/poulet-roti-au-four-3a30b4b3",
     ingredients: ["Poulet", "Sel", "Poivre", "Herbes de Provence"],
     steps: [
       "Préchauffez le four à 200°C.",
@@ -24,7 +25,8 @@ final dummyMeals = [
   Meal(
     title: "Boeuf bourguignon",
     categories: ['ctgr_2', 'ctgr_6', 'ctgr_8'],
-    imageUrl: "https://example.com/image.jpg",
+    imageUrl:
+        "https://i0.wp.com/www.moulindeserres.fr/wp-content/uploads/2018/02/bourguignon.jpg?fit=2360%2C1568&ssl=1",
     ingredients: ["Boeuf", "Carottes", "Oignons", "Vin rouge"],
     steps: [
       "Dans une cocotte, faites revenir les morceaux de boeuf dans un peu d'huile.",
@@ -43,7 +45,8 @@ final dummyMeals = [
   Meal(
     title: "Salade de quinoa",
     categories: ['ctgr_1', 'ctgr_7'],
-    imageUrl: "https://example.com/image.jpg",
+    imageUrl:
+        "https://img.cuisineaz.com/660x660/2016/04/18/i88777-salade-de-quinoa-a-la-tomate.jpg",
     ingredients: ["Quinoa", "Tomates", "Concombre", "Feta"],
     steps: [
       "Faites cuire le quinoa selon les instructions sur l'emballage.",
