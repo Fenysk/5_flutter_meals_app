@@ -16,32 +16,41 @@ class _TabsScreenState extends State<TabsScreen> {
 
   List<Meal> favoriteMeals = [];
 
-  void _addMealToFavorites(Meal meal) {
-    if (favoriteMeals.contains(meal)) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text('${meal.title} est déjà dans votre liste de favoris.')));
-      return;
-    }
+  void _toggleMealFavorite(Meal meal) {
+    setState(() {
+      ScaffoldMessenger.of(context).clearSnackBars();
 
-    setState(() => favoriteMeals.add(meal));
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${meal.title} a été ajouté aux favoris.')),
-    );
+      if (favoriteMeals.contains(meal)) {
+        favoriteMeals.remove(meal);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 2),
+            content: Text('${meal.title} a été retiré des favoris.'),
+          ),
+        );
+      } else {
+        favoriteMeals.add(meal);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 2),
+            content: Text('${meal.title} a été ajouté aux favoris.'),
+          ),
+        );
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     Widget activePage = CategoriesScreen(
       meals: dummyMeals,
-      onMealAddToFavorite: _addMealToFavorites,
+      onToogleFavorite: _toggleMealFavorite,
     );
 
     if (_selectedPage == 1) {
       activePage = MealsScreen(
         meals: favoriteMeals,
-        onMealAddToFavorite: _addMealToFavorites,
+        onToogleFavorite: _toggleMealFavorite,
       );
     }
 
