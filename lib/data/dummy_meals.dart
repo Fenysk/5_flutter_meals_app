@@ -62,4 +62,24 @@ final dummyMeals = [
     isVegan: true,
     isVegetarian: true,
   ),
+  Meal(
+    title: 'Spaghetti avec sauce tomate',
+    categories: ['ctgr_1', 'ctgr_3'],
+    imageUrl:
+        'https://www.giallozafferano.com/images/228-22832/spaghetti-with-tomato-sauce_1200x800.jpg',
+    ingredients: ['4 Tomates', '1 Spaghetti', '1 Oignon'],
+    steps: [
+      'Couper les tomates et l\'oignon en petits morceaux',
+      'Faites bouillir de l\'eau - ajoutez-y du sel une fois qu\'elle bout.',
+      'Mettez les spaghettis dans l\'eau bouillante - attendez qu\'ils soient cuits',
+      'Les retirer et ajouter des tomates, de l\'oignon et de la sauce tomate.',
+    ],
+    duration: 20,
+    complexity: Complexity.simple,
+    affordability: Affordability.affordable,
+    isGlutenFree: false,
+    isLactoseFree: false,
+    isVegan: false,
+    isVegetarian: true,
+  ),
 ];
