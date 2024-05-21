@@ -1,5 +1,4 @@
 import 'package:uuid/uuid.dart';
-import 'package:meals_app/models/category.dart';
 
 const uuid = Uuid();
 String get generatedId =>
@@ -34,7 +33,7 @@ class Meal {
   }) : id = generatedId;
 
   final String id;
-  final List<Category> categories;
+  final List<String> categories;
   final String title;
   final String imageUrl;
   final List<String> ingredients;

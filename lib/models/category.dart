@@ -7,9 +7,10 @@ String get generatedId =>
 
 class Category {
   Category({
+    required this.id,
     required this.title,
     this.color = Colors.orange,
-  }) : id = generatedId;
+  });
 
   final String id;
   final String title;
