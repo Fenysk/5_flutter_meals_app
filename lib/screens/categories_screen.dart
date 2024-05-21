@@ -12,16 +12,17 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text('Pick your categoy'),
       ),
       body: GridView(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          children: [
-            ...dummyCategories
-                .map((category) => CategoryGridItem(category: category)),
-          ]),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        children: [
+          for (final category in dummyCategories)
+            CategoryGridItem(category: category),
+        ],
+      ),
     );
   }
 }
