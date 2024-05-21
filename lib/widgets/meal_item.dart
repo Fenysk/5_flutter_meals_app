@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:meals_app/widgets/meal_item_trait.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal});
 
   final Meal meal;
+
+  String turnIntoTitleCase(String text) =>
+      text[0].toUpperCase() + text.substring(1);
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +57,21 @@ class MealItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(
-                          Icons.schedule,
-                          color: Colors.white,
+                        MealItemTrait(
+                          icon: Icons.restaurant,
+                          label: turnIntoTitleCase(meal.complexity.name),
                         ),
-                        const SizedBox(width: 6),
-                        Text(
-                          "${meal.duration} min",
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    color: Colors.white,
-                                  ),
+                        const SizedBox(width: 8),
+                        MealItemTrait(
+                          icon: Icons.schedule,
+                          label: '${meal.duration} min',
+                        ),
+                        const SizedBox(width: 8),
+                        MealItemTrait(
+                          icon: Icons.euro_symbol,
+                          label: turnIntoTitleCase(meal.affordability.name),
                         ),
                       ],
                     ),
