@@ -14,24 +14,30 @@ class MealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent = Column(
-      children: [
-        Text(
-          'Oups !',
-          style: Theme.of(context)
-              .textTheme
-              .headlineLarge!
-              .copyWith(color: Theme.of(context).colorScheme.onBackground),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'Aucun repas trouvé, vérifiez vos filtres !',
-          style: Theme.of(context)
-              .textTheme
-              .headlineLarge!
-              .copyWith(color: Theme.of(context).colorScheme.onBackground),
-        ),
-      ],
+    Widget mainContent = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Oups !',
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Aucun repas trouvé, vérifiez vos filtres !',
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
 
     if (meals.isNotEmpty) {
