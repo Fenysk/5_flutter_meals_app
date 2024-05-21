@@ -6,11 +6,11 @@ import 'package:meals_app/screens/meals/meal_details_screen.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
   });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   void navigateToMealDetails(BuildContext context, Meal meal) {
@@ -60,9 +60,11 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
+    if (title == null) return mainContent;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: mainContent,
     );

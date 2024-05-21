@@ -22,14 +22,14 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (_selectedPage == 1) {
       activePage = MealsScreen(
-        title: 'Vos favoris',
         meals: favoriteMeals,
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_selectedPage == 0 ? 'Categories' : 'Favorites'),
+        title: Text(
+            _selectedPage == 0 ? 'Sélectionnez une categorie' : 'Mes favoris'),
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
