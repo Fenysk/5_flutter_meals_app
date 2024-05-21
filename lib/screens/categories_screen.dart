@@ -11,17 +11,20 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pick your categoy'),
       ),
-      body: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: GridView(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          children: [
+            for (final category in dummyCategories)
+              CategoryGridItem(category: category),
+          ],
         ),
-        children: [
-          for (final category in dummyCategories)
-            CategoryGridItem(category: category),
-        ],
       ),
     );
   }
