@@ -10,8 +10,7 @@ class MealItem extends StatelessWidget {
 
   final void Function(BuildContext, Meal) onMealTap;
 
-  String turnIntoTitleCase(String text) =>
-      text[0].toUpperCase() + text.substring(1);
+  String turnIntoTitleCase(String text) => text[0].toUpperCase() + text.substring(1);
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +24,15 @@ class MealItem extends StatelessWidget {
         onTap: () => onMealTap(context, meal),
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 200,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 200,
+              ),
             ),
             Positioned(
               bottom: 0,
