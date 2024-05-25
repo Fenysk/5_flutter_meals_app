@@ -4,25 +4,16 @@ import 'package:meals_app/widgets/meal/meal_item.dart';
 import 'package:meals_app/screens/meals/meal_details_screen.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({
-    super.key,
-    this.title,
-    required this.meals,
-    required this.onToogleFavorite,
-  });
+  const MealsScreen({super.key, this.title, required this.meals});
 
   final String? title;
   final List<Meal> meals;
-  final void Function(Meal) onToogleFavorite;
 
   void navigateToMealDetails(BuildContext context, Meal meal) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: ((context) => MealDetailsScreen(
-              meal: meal,
-              onFavoriteTap: () => onToogleFavorite(meal),
-            )),
+        builder: ((context) => MealDetailsScreen(meal: meal)),
       ),
     );
   }
@@ -37,18 +28,12 @@ class MealsScreen extends StatelessWidget {
         children: [
           Text(
             'Oups !',
-            style: Theme.of(context)
-                .textTheme
-                .headlineLarge!
-                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Theme.of(context).colorScheme.onBackground),
           ),
           const SizedBox(height: 20),
           Text(
             'Aucun repas trouvé, vérifiez vos filtres !',
-            style: Theme.of(context)
-                .textTheme
-                .headlineLarge!
-                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Theme.of(context).colorScheme.onBackground),
             textAlign: TextAlign.center,
           ),
         ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/categories/categories_screen.dart';
 import 'package:meals_app/screens/meals/meals_screen.dart';
-import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 import 'package:meals_app/screens/filters/filters_screen.dart';
 import 'package:meals_app/providers/meals_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/providers/favorites_provider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -24,32 +24,7 @@ class TabsScreen extends ConsumerStatefulWidget {
 class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPage = 0;
 
-  List<Meal> favoriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
-
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 2),
-        content: Text(message),
-      ),
-    );
-  }
-
-  void _toggleMealFavorite(Meal meal) {
-    final isExisting = favoriteMeals.contains(meal);
-
-    setState(() {
-      if (isExisting) {
-        favoriteMeals.remove(meal);
-        _showInfoMessage('${meal.title} a été retiré des favoris.');
-      } else {
-        favoriteMeals.add(meal);
-        _showInfoMessage('${meal.title} a été ajouté aux favoris.');
-      }
-    });
-  }
 
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
@@ -80,16 +55,11 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       return true;
     }).toList();
 
-    Widget activePage = CategoriesScreen(
-      availableMeals: availableMeals,
-      onToogleFavorite: _toggleMealFavorite,
-    );
+    Widget activePage = CategoriesScreen(availableMeals: availableMeals);
 
     if (_selectedPage == 1) {
-      activePage = MealsScreen(
-        meals: favoriteMeals,
-        onToogleFavorite: _toggleMealFavorite,
-      );
+      final favoritesMeals = ref.watch(favoritesProvider);
+      activePage = MealsScreen(meals: favoritesMeals);
     }
 
     return Scaffold(

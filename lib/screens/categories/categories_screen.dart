@@ -5,14 +5,9 @@ import 'package:meals_app/screens/meals/meals_screen.dart';
 import 'package:meals_app/models/meal.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({
-    super.key,
-    required this.availableMeals,
-    required this.onToogleFavorite,
-  });
+  const CategoriesScreen({super.key, required this.availableMeals});
 
   final List<Meal> availableMeals;
-  final void Function(Meal) onToogleFavorite;
 
   void _selectCategory(BuildContext context, String categoryId) {
     Navigator.push(
@@ -25,7 +20,6 @@ class CategoriesScreen extends StatelessWidget {
               )
               .toList(),
           title: dummyCategories.firstWhere((cat) => cat.id == categoryId).title,
-          onToogleFavorite: onToogleFavorite,
         ),
       ),
     );

@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/providers/favorites_provider.dart';
 
-class MealDetailsScreen extends StatelessWidget {
-  const MealDetailsScreen(
-      {super.key, required this.meal, required this.onFavoriteTap});
+class MealDetailsScreen extends ConsumerWidget {
+  const MealDetailsScreen({super.key, required this.meal});
 
   final Meal meal;
-  final void Function() onFavoriteTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    void toggleFavoriteStatus() {
+      final wasAdded = ref.read(favoritesProvider.notifier).toogleMealFavoriteStatus(meal);
+
+      final message = wasAdded ? '${meal.title} a été ajouté aux favoris' : '${meal.title} a été retiré des favoris';
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 2),
+          content: Text(message),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: onFavoriteTap,
+            onPressed: toggleFavoriteStatus,
             icon: const Icon(Icons.star),
           )
         ],
@@ -72,12 +85,8 @@ class MealDetailsScreen extends StatelessWidget {
                           children: [
                             Text(
                               '${i + 1}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Theme.of(context).colorScheme.primary,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
